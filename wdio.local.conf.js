@@ -5,6 +5,7 @@ exports.config = {
    * base config
    */
   ...config,
+  automationProtocol: 'devtools',
   /**
    * config for local testing
    */
@@ -23,6 +24,9 @@ exports.config = {
     {
       browserName: 'firefox',
       acceptInsecureCerts: true,
+      exclude: [
+        'tests/e2e/specs/mocked-*.spec.js',
+      ],
     },
   ],
 };

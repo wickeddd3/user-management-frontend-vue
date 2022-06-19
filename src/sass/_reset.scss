@@ -1,0 +1,70 @@
+html {
+  direction: ltr;
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: 400;
+  min-height: 100%;
+  overflow-y: auto !important;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -ms-touch-action: manipulation;
+  -webkit-font-feature-settings: "liga" 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: none;
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-base) !important;
+  font-feature-settings: "liga" 0;
+  margin-bottom: 0 !important;
+  min-height: 100%;
+  position: relative;
+  touch-action: manipulation;
+}
+
+.v-app {
+  &.v-application {
+    font-family: var(--font-family-base) !important;
+
+    .display-4,
+    .display-3,
+    .display-2,
+    .display-1,
+    .headline,
+    .title,
+    .subtitle-1,
+    .subtitle-2,
+    .body-1,
+    .body-2 {
+      font-family: var(--font-family-base) !important;
+    }
+
+    // TODO: update to vuetify sass variable $headings map-deep-merge
+    h1 { font-size: 24px; }
+    h2 { font-size: 21px; }
+    h3 { font-size: 19px; }
+    h4 { font-size: 16px; }
+    h5 { font-size: 14px; }
+    h6 { font-size: 12px; }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text);
+    }
+
+    p,
+    a {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: 32px;
+    }
+
+    small {
+      font-size: 10px;
+    }
+
+    input[type=text], input[type=number] {
+      font-size: 14px;
+    }
+  }
+}

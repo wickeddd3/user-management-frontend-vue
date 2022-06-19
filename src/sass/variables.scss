@@ -1,0 +1,23 @@
+// Globals
+$global-box-shadow:               0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$global-box-shadow-inset:         inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$global-radius:                   0.5rem;
+
+// App Workspace
+$app-workspace-padding:           1.5rem;
+
+// Card
+$card-border-color:               #edf2f9;
+
+// Fonts
+$font-family-sans-serif:          "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-base:                $font-family-sans-serif !default;
+$font-size-base:                  14px !default;
+$font-size-lg:                    16px !default;
+$font-size-sm:                    12px !default;
+$font-size-xs:                    10px !default;
+
+// Spacing
+$padding-base:                    20px;
+$margin-base:                     20px;
+$layout-base:                     40px;
