@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Appbar from '@/components/Appbar';
-import Sidebar from '@/components/Sidebar';
+import Appbar from '@/components/Appbar/index.vue';
+import Sidebar from '@/components/Sidebar/index.vue';
 
 export default {
   name: 'App',
