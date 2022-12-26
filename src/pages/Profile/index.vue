@@ -102,7 +102,13 @@ export default {
       ...mapActions({ set: 'users/current/value/email' }),
     },
   },
+  created () {
+    this.getCurrent();
+  },
   methods: {
+    ...mapActions({
+      getCurrent: 'users/current/get',
+    }),
     submit () {
       console.log('submitted');
     },
