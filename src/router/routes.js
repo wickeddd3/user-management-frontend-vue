@@ -2,7 +2,7 @@ export default [
   {
     path: '/',
     name: 'Main',
-    component: () => import(/* webpackChunkName: "dashboard" */ '../pages/Dashboard/index.vue'),
+    component: () => import(/* webpackChunkName: "main" */ '../pages/Dashboard/index.vue'),
   },
   {
     path: '/dashboard',
@@ -15,8 +15,8 @@ export default [
     component: () => import(/* webpackChunkName: "users" */ '../pages/Users/index.vue'),
   },
   {
-    path: '/account',
-    name: 'Account',
-    component: () => import(/* webpackChunkName: "account" */ '../pages/Account/index.vue'),
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "profile" */ '../pages/Profile/index.vue'),
   },
 ];

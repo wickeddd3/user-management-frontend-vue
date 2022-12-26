@@ -21,7 +21,7 @@ export default [
       {
         title: 'Profile',
         icon: 'mdi-account-outline',
-        route: '/account',
+        route: '/profile',
       },
       {
         title: 'Log Out',

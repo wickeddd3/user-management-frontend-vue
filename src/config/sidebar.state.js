@@ -1,4 +1,4 @@
 export default {
   show: true,
-  mini: true,
+  mini: false,
 };
