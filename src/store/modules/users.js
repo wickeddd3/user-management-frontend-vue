@@ -5,7 +5,6 @@ const state = {
 };
 
 const getters = {
-  breadcrumbs: ({ breadcrumbs }) => breadcrumbs,
   'current/ready': ({ current: { ready } }) => ready,
   'current/value': ({ current: { value } }) => value,
   'current/value/firstname': ({ current: { value: { firstName } } }) => firstName,

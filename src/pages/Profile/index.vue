@@ -1,10 +1,5 @@
 <template>
-  <app-content class="px-8">
-    <v-breadcrumbs
-      :items="breadcrumbs"
-      divider="/"
-      class="px-0"
-    ></v-breadcrumbs>
+  <app-content>
     <v-row>
       <v-col
         xl="6" lg="6"
@@ -86,9 +81,6 @@ export default {
     AppContent,
   },
   computed: {
-    ...mapGetters({
-      breadcrumbs: 'users/breadcrumbs',
-    }),
     firstName: {
       ...mapGetters({ get: 'users/current/value/firstname' }),
       ...mapActions({ set: 'users/current/value/firstname' }),

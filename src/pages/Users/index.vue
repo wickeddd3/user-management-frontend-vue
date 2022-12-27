@@ -1,10 +1,5 @@
 <template>
-  <app-content class="px-8">
-    <v-breadcrumbs
-      :items="breadcrumbs"
-      divider="/"
-      class="px-0"
-    ></v-breadcrumbs>
+  <app-content>
     <v-row justify="space-between">
       <v-col cols="auto">
         <v-text-field
@@ -58,7 +53,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      breadcrumbs: 'users/breadcrumbs',
       ready: 'users/list/ready',
       headers: 'users/list/headers',
       loading: 'users/list/value/loading',

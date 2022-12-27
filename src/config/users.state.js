@@ -1,16 +1,4 @@
 export default {
-  breadcrumbs: [
-    {
-      text: 'Home',
-      to: '/',
-      exact: true,
-    },
-    {
-      text: 'Profile',
-      to: '/profile',
-      exact: true,
-    },
-  ],
   current: {
     ready: false,
     value: {

@@ -2,7 +2,7 @@ export default [
   {
     title: 'Dashboard',
     icon: 'mdi-chart-box-outline',
-    route: '/dashboard',
+    route: '/',
     hasSubmenu: false,
     children: [],
   },

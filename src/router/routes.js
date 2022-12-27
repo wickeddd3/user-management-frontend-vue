@@ -1,11 +1,6 @@
 export default [
   {
     path: '/',
-    name: 'Main',
-    component: () => import(/* webpackChunkName: "main" */ '../pages/Dashboard/index.vue'),
-  },
-  {
-    path: '/dashboard',
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '../pages/Dashboard/index.vue'),
   },
