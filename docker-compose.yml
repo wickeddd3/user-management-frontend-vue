@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  #Vue2App Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8001"
+    image: vue2
+    container_name: user-management-app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    volumes:
+      - ./:/var/www/user-management-frontend-vue
+      - /var/www/user-management-frontend-vue/node_modules
+    networks:
+      - user-management-network
+
+#Docker Networks
+networks:
+  user-management-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
