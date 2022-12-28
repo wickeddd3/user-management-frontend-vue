@@ -1,7 +1,5 @@
-# vue2-vuetify-app-template
+## User Management Frontend
 
-Vue2 App Template using Vue2 and Vuetify Framework
-
-How to run locally
-- yarn install
-- yarn serve
+### Running the application with docker compose
+* docker-compose build app (Build the app image)
+* docker-compose up -d (Run environment in background)
