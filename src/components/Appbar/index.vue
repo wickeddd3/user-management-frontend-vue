@@ -35,17 +35,20 @@
       </template>
 
       <v-list dense>
-        <v-list-item
-          v-for="item in menu"
-          :key="item.title"
-          :to="item.route"
-          link
-        >
+        <v-list-item to="/profile" link>
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link @click="logout">
+          <v-list-item-icon>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Log Out</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -56,19 +59,14 @@
 <script>
 import { mapActions } from 'vuex';
 import Breakpoints from '@/mixins/Breakpoints';
-import menu from './index';
 
 export default {
   name: 'Appbar',
-  data () {
-    return {
-      menu,
-    };
-  },
   mixins: [ Breakpoints ],
   methods: {
     ...mapActions({
       toggleShow: 'sidebar/show/toggle',
+      logout: 'authentication/logout',
     }),
   },
 };
