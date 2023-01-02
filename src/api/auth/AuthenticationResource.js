@@ -1,6 +1,20 @@
 import ResourceClient from '@/api/ResourceClient';
 import Csrf from '@/api/Csrf';
 
+export class UserResource extends ResourceClient {
+  constructor (parent) {
+    super({ url: parent });
+  }
+
+  get () {
+    return super.get({ url: '/api/user' });
+  }
+
+  update (data) {
+    return super.put(data, { url: '/user/profile-information' });
+  }
+}
+
 export default class AuthenticationResource extends ResourceClient {
   constructor () {
     super({ url: '' });
@@ -15,5 +29,9 @@ export default class AuthenticationResource extends ResourceClient {
 
   logout () {
     return super.post({}, { url: '/logout' });
+  }
+
+  current () {
+    return new UserResource(this._url);
   }
 }

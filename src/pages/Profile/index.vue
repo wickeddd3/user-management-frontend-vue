@@ -9,33 +9,18 @@
         <validation-observer v-slot="{ handleSubmit, invalid }" slim>
           <v-form
             ref="form"
-            @submit.prevent="handleSubmit(submit)"
+            @submit.prevent="handleSubmit(updateCurrent)"
           >
             <validation-provider
               v-slot="{ errors }"
-              vid="firstName"
-              name="First Name"
+              vid="name"
+              name="Name"
               rules="required|max:100"
             >
               <v-text-field
-                v-model="firstName"
+                v-model="name"
                 :error-messages="errors"
-                label="First Name"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors }"
-              vid="lastName"
-              name="Last Name"
-              rules="required"
-            >
-              <v-text-field
-                v-model="lastName"
-                :error-messages="errors"
-                label="Last Name"
+                label="Name"
                 outlined
                 dense
               ></v-text-field>
@@ -56,14 +41,21 @@
               ></v-text-field>
             </validation-provider>
 
-            <v-btn
-              :disabled="invalid"
-              color="primary"
-              class="mt-2"
-              type="submit"
-            >
-              Save Changes
-            </v-btn>
+            <div class="d-flex justify-space-between align-center mt-4">
+              <router-link
+                to="/profile/password"
+                class="text-decoration-none font-weight-bold"
+              >Update password</router-link>
+
+              <v-btn
+                :disabled="invalid"
+                :loading="loading"
+                color="primary"
+                type="submit"
+              >
+                Save Changes
+              </v-btn>
+            </div>
           </v-form>
         </validation-observer>
       </v-col>
@@ -81,29 +73,30 @@ export default {
     AppContent,
   },
   computed: {
-    firstName: {
-      ...mapGetters({ get: 'users/current/value/firstname' }),
-      ...mapActions({ set: 'users/current/value/firstname' }),
-    },
-    lastName: {
-      ...mapGetters({ get: 'users/current/value/lastname' }),
-      ...mapActions({ set: 'users/current/value/lastname' }),
+    ...mapGetters({
+      loading: 'authentication/current/loading',
+    }),
+    name: {
+      ...mapGetters({ get: 'authentication/current/value/name' }),
+      ...mapActions({ set: 'authentication/current/value/name' }),
     },
     email: {
-      ...mapGetters({ get: 'users/current/value/email' }),
-      ...mapActions({ set: 'users/current/value/email' }),
+      ...mapGetters({ get: 'authentication/current/value/email' }),
+      ...mapActions({ set: 'authentication/current/value/email' }),
     },
   },
   created () {
     this.getCurrent();
   },
+  destroyed () {
+    this.resetCurrent();
+  },
   methods: {
     ...mapActions({
-      getCurrent: 'users/current/get',
+      getCurrent: 'authentication/current/get',
+      resetCurrent: 'authentication/current/reset',
+      updateCurrent: 'authentication/current/update',
     }),
-    submit () {
-      console.log('submitted');
-    },
   },
 };
 </script>
