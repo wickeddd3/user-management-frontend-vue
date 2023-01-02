@@ -45,7 +45,7 @@
               <router-link
                 to="/profile/password"
                 class="text-decoration-none font-weight-bold"
-              >Update password</router-link>
+              >Profile Password</router-link>
 
               <v-btn
                 :disabled="invalid"

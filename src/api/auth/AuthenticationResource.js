@@ -1,7 +1,8 @@
+// eslint-disable-next-line max-classes-per-file
 import ResourceClient from '@/api/ResourceClient';
 import Csrf from '@/api/Csrf';
 
-export class UserResource extends ResourceClient {
+class UserResource extends ResourceClient {
   constructor (parent) {
     super({ url: parent });
   }
@@ -12,6 +13,10 @@ export class UserResource extends ResourceClient {
 
   update (data) {
     return super.put(data, { url: '/user/profile-information' });
+  }
+
+  updatePassword (data) {
+    return super.put(data, { url: '/user/password' });
   }
 }
 

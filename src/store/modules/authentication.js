@@ -21,6 +21,14 @@ const state = {
     loading: false,
     ready: false,
   },
+  security: {
+    value: {
+      password: null,
+      current_password: null,
+      password_confirmation: null,
+    },
+    loading: false,
+  },
 };
 
 const getters = {
@@ -34,6 +42,11 @@ const getters = {
   'current/value': ({ current: { value } }) => value,
   'current/value/name': ({ current: { value: { name } } }) => name,
   'current/value/email': ({ current: { value: { email } } }) => email,
+  'security/loading': ({ security: { loading } }) => loading,
+  'security/value': ({ security: { value } }) => value,
+  'security/value/password': ({ security: { value: { password } } }) => password,
+  'security/value/password/current': ({ security: { value } }) => value?.current_password,
+  'security/value/password/confirmation': ({ security: { value } }) => value?.password_confirmation,
 };
 
 const mutations = {
@@ -41,6 +54,8 @@ const mutations = {
   'FORM/VALUE/SET': (state, value) => { state.form.value = { ...state.form.value, ...value }; },
   'CURRENT/SET': (state, current) => { state.current = { ...state.current, ...current }; },
   'CURRENT/VALUE/SET': (state, value) => { state.current.value = { ...state.current.value, ...value }; },
+  'SECURITY/SET': (state, security) => { state.security = { ...state.security, ...security }; },
+  'SECURITY/VALUE/SET': (state, value) => { state.security.value = { ...state.security.value, ...value }; },
 };
 
 const actions = {
@@ -100,6 +115,25 @@ const actions = {
     const form = getters['current/value'];
     await resource.current().update(form);
     commit('CURRENT/SET', { loading: false });
+  },
+  'security/value/password': ({ commit }, password) => commit('SECURITY/VALUE/SET', { password }),
+  'security/value/password/current': ({ commit }, currentPassword) => commit('SECURITY/VALUE/SET', { current_password: currentPassword }),
+  'security/value/password/confirmation': ({ commit }, passwordConfirmation) => commit('SECURITY/VALUE/SET', { password_confirmation: passwordConfirmation }),
+  'security/reset': ({ commit }) => {
+    commit('SECURITY/SET', {
+      value: {
+        password: null,
+        current_password: null,
+        password_confirmation: null,
+      },
+      loading: false,
+    });
+  },
+  'security/update': async ({ commit, getters }) => {
+    commit('SECURITY/SET', { loading: true });
+    const security = getters['security/value'];
+    await resource.current().updatePassword(security);
+    commit('SECURITY/SET', { loading: false });
   },
 };
 

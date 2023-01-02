@@ -31,4 +31,12 @@ export default [
     },
     component: () => import(/* webpackChunkName: "profile" */ '../pages/Profile/index.vue'),
   },
+  {
+    path: '/profile/password',
+    name: 'Profile Password',
+    meta: {
+      authOnly: true,
+    },
+    component: () => import(/* webpackChunkName: "profilePassword" */ '../pages/Profile/Password.vue'),
+  },
 ];
