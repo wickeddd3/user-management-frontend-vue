@@ -17,6 +17,7 @@
           @submit.prevent="handleSubmit(login)"
         >
           <h1 class="my-4">Login</h1>
+          <error-message :status="status"></error-message>
           <validation-provider
             v-slot="{ errors }"
             vid="email"
@@ -47,6 +48,7 @@
 
           <v-btn
             :disabled="invalid"
+            :loading="loading"
             color="primary"
             class="mt-2 py-8 text-h6 font-weight-bold"
             type="submit"
@@ -63,22 +65,32 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'Login',
+  components: { ErrorMessage },
   computed: {
+    ...mapGetters({
+      loading: 'authentication/form/loading',
+      status: 'authentication/form/status',
+    }),
     email: {
-      ...mapGetters({ get: 'authentication/form/email' }),
-      ...mapActions({ set: 'authentication/form/email' }),
+      ...mapGetters({ get: 'authentication/form/value/email' }),
+      ...mapActions({ set: 'authentication/form/value/email' }),
     },
     password: {
-      ...mapGetters({ get: 'authentication/form/password' }),
-      ...mapActions({ set: 'authentication/form/password' }),
+      ...mapGetters({ get: 'authentication/form/value/password' }),
+      ...mapActions({ set: 'authentication/form/value/password' }),
     },
+  },
+  created () {
+    this.reset();
   },
   methods: {
     ...mapActions({
       login: 'authentication/login',
+      reset: 'authentication/form/reset',
     }),
   },
 };
