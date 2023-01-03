@@ -110,11 +110,12 @@ const actions = {
       commit('CURRENT/SET', { value: data, ready: true });
     }
   },
-  'current/update': async ({ commit, getters }) => {
+  'current/update': async ({ commit, getters, dispatch }) => {
     commit('CURRENT/SET', { loading: true });
     const form = getters['current/value'];
     await resource.current().update(form);
     commit('CURRENT/SET', { loading: false });
+    dispatch('snackbar/set', { show: true, text: 'Profile has been successfully updated.' }, { root: true });
   },
   'security/value/password': ({ commit }, password) => commit('SECURITY/VALUE/SET', { password }),
   'security/value/password/current': ({ commit }, currentPassword) => commit('SECURITY/VALUE/SET', { current_password: currentPassword }),
@@ -129,11 +130,12 @@ const actions = {
       loading: false,
     });
   },
-  'security/update': async ({ commit, getters }) => {
+  'security/update': async ({ commit, getters, dispatch }) => {
     commit('SECURITY/SET', { loading: true });
     const security = getters['security/value'];
     await resource.current().updatePassword(security);
     commit('SECURITY/SET', { loading: false });
+    dispatch('snackbar/set', { show: true, text: 'Password has been successfully updated.' }, { root: true });
   },
 };
 

@@ -8,6 +8,7 @@
         class="app-content px-8"
         fluid
       >
+        <snackbar></snackbar>
         <breadcrumbs></breadcrumbs>
         <slot></slot>
       </v-container>
@@ -19,6 +20,7 @@
 import Appbar from '@/components/Appbar/index.vue';
 import Sidebar from '@/components/Sidebar/index.vue';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import Snackbar from '@/components/Snackbar';
 
 export default {
   name: 'AppContent',
@@ -26,6 +28,7 @@ export default {
     Appbar,
     Sidebar,
     Breadcrumbs,
+    Snackbar,
   },
 };
 </script>
