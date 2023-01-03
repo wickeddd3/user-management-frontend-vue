@@ -12,11 +12,15 @@ class UserResource extends ResourceClient {
   }
 
   update (data) {
-    return super.put(data, { url: '/user/profile-information' });
+    return super.put(data, { url: '/user/profile-information' })
+      .then(response => response)
+      .catch(error => error.response);
   }
 
   updatePassword (data) {
-    return super.put(data, { url: '/user/password' });
+    return super.put(data, { url: '/user/password' })
+      .then(response => response)
+      .catch(error => error.response);
   }
 }
 

@@ -77,7 +77,7 @@ const actions = {
     const { status } = await resource.login(form);
     if (status === 200) {
       Cookies.set('AUTH', true, { expires: 7 });
-      router.push({ name: 'Dashboard' });
+      router.push({ path: '/' });
       return;
     }
     commit('FORM/SET', { status });
@@ -89,7 +89,7 @@ const actions = {
     await resource.logout();
     Cookies.remove('XSRF-TOKEN');
     Cookies.remove('AUTH');
-    router.push({ name: 'Login' });
+    router.push({ path: '/login' });
   },
   'current/value/name': ({ commit }, name) => commit('CURRENT/VALUE/SET', { name }),
   'current/value/email': ({ commit }, email) => commit('CURRENT/VALUE/SET', { email }),

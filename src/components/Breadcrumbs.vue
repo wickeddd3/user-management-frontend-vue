@@ -12,17 +12,13 @@ export default {
   computed: {
     breadcrumbs () {
       const { matched } = this.$route;
-      const intialRoutes = [{
-        text: 'Home',
-        to: '/',
-        exact: true,
-      }];
-      const matchedRoutes = (matched || []).map(item => ({
-        text: item.name,
-        to: item.path,
-        exact: true,
-      }));
-      return [ ...intialRoutes, ...matchedRoutes ];
+      return (matched || [])
+        .filter(item => item.meta.breadcrumb)
+        .map(item => ({
+          text: item.meta.breadcrumb,
+          to: item.path || '/',
+          exact: true,
+        }));
     },
   },
 };

@@ -9,6 +9,7 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  exact: true,
 });
 
 function isLoggedIn () {
@@ -22,13 +23,13 @@ router.beforeEach((to, from, next) => {
     if (isLoggedIn()) {
       next();
     } else {
-      next({ name: 'Login' });
+      next({ path: '/login' });
     }
   } else if (to.meta.guestOnly) {
     if (!isLoggedIn()) {
       next();
     } else {
-      next({ name: 'Dashboard' });
+      next({ path: '/' });
     }
   } else {
     next();

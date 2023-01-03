@@ -2,9 +2,11 @@
   <app-content>
     <v-row>
       <v-col
-        xl="6" lg="6"
+        xl="5"
+        lg="5"
         md="8"
-        sm="12" xs="12"
+        sm="12"
+        xs="12"
       >
         <validation-observer v-slot="{ handleSubmit, invalid }" slim>
           <v-form
@@ -83,7 +85,7 @@ import { mapGetters, mapActions } from 'vuex';
 import AppContent from '@/components/App/AppContent';
 
 export default {
-  name: 'ProfilePassword',
+  name: 'Password',
   components: {
     AppContent,
   },
