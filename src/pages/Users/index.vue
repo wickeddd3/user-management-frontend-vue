@@ -35,7 +35,16 @@
       :footer-props="footerOptions"
       :loading="loading"
       class="elevation-1"
-    ></v-data-table>
+    >
+      <template v-slot:item.delete="{ item }">
+        <v-btn
+          icon
+          @click="deleteUser(item.id)"
+        >
+          <v-icon>mdi-trash-can-outline</v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
     <v-skeleton-loader
       v-else
       type="table"
@@ -76,6 +85,7 @@ export default {
   methods: {
     ...mapActions({
       getList: 'users/list/get',
+      deleteUser: 'users/delete',
     }),
   },
 };

@@ -15,6 +15,12 @@ export default {
         sortable: true,
         value: 'email',
       },
+      {
+        text: '',
+        align: 'start',
+        sortable: false,
+        value: 'delete',
+      },
     ],
     value: null,
     options: {

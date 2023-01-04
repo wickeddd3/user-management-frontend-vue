@@ -84,6 +84,14 @@ const actions = {
       dispatch('snackbar/set', { show: true, text: 'User has been successfully added.' }, { root: true });
     }
   },
+  delete: async ({ getters, dispatch }, id) => {
+    const { status } = await resource.delete(id);
+    if (status === 200) {
+      const options = getters['list/options'];
+      dispatch('list/get', options);
+      dispatch('snackbar/set', { show: true, text: 'User has been successfully deleted.' }, { root: true });
+    }
+  },
 };
 
 export default {

@@ -24,4 +24,10 @@ export default class UserResource extends ResourceClient {
       .then(response => response)
       .catch(error => error.response);
   }
+
+  delete (id) {
+    return super.delete({ url: `${this._url}/${id}` })
+      .then(response => response)
+      .catch(error => error.response);
+  }
 }
