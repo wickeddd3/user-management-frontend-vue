@@ -17,7 +17,10 @@
           @submit.prevent="handleSubmit(login)"
         >
           <h1 class="my-4">Login</h1>
-          <error-message :status="status"></error-message>
+          <error-message
+            :status="status"
+            :errors="errors"
+          ></error-message>
           <validation-provider
             v-slot="{ errors }"
             vid="email"
@@ -74,6 +77,7 @@ export default {
     ...mapGetters({
       loading: 'authentication/form/loading',
       status: 'authentication/form/status',
+      errors: 'authentication/form/errors',
     }),
     email: {
       ...mapGetters({ get: 'authentication/form/value/email' }),

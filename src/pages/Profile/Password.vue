@@ -13,6 +13,10 @@
             ref="form"
             @submit.prevent="handleSubmit(updatePassword)"
           >
+            <error-message
+              :status="status"
+              :errors="errors"
+            ></error-message>
             <validation-provider
               v-slot="{ errors }"
               vid="currentPassword"
@@ -83,15 +87,19 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import AppContent from '@/components/App/AppContent';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'Password',
   components: {
     AppContent,
+    ErrorMessage,
   },
   computed: {
     ...mapGetters({
       loading: 'authentication/security/loading',
+      status: 'authentication/security/status',
+      errors: 'authentication/security/errors',
     }),
     currentPassword: {
       ...mapGetters({ get: 'authentication/security/value/password/current' }),

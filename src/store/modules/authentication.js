@@ -11,6 +11,7 @@ const state = {
       password: null,
     },
     loading: false,
+    errors: {},
     status: null,
   },
   current: {
@@ -28,11 +29,14 @@ const state = {
       password_confirmation: null,
     },
     loading: false,
+    errors: {},
+    status: null,
   },
 };
 
 const getters = {
   'form/loading': ({ form: { loading } }) => loading,
+  'form/errors': ({ form: { errors } }) => errors,
   'form/status': ({ form: { status } }) => status,
   'form/value': ({ form: { value } }) => value,
   'form/value/email': ({ form: { value: { email } } }) => email,
@@ -43,6 +47,8 @@ const getters = {
   'current/value/name': ({ current: { value: { name } } }) => name,
   'current/value/email': ({ current: { value: { email } } }) => email,
   'security/loading': ({ security: { loading } }) => loading,
+  'security/errors': ({ security: { errors } }) => errors,
+  'security/status': ({ security: { status } }) => status,
   'security/value': ({ security: { value } }) => value,
   'security/value/password': ({ security: { value: { password } } }) => password,
   'security/value/password/current': ({ security: { value } }) => value?.current_password,
@@ -68,20 +74,20 @@ const actions = {
         password: null,
       },
       loading: false,
+      errors: {},
       status: null,
     });
   },
   login: async ({ commit, getters }) => {
     commit('FORM/SET', { loading: true });
     const form = getters['form/value'];
-    const { status } = await resource.login(form);
+    const { status, data } = await resource.login(form);
     if (status === 200) {
       Cookies.set('AUTH', true, { expires: 7 });
       router.push({ path: '/' });
       return;
     }
-    commit('FORM/SET', { status });
-    commit('FORM/SET', { loading: false });
+    commit('FORM/SET', { status, errors: (data.errors || {}), loading: false });
     Cookies.remove('XSRF-TOKEN');
     Cookies.remove('AUTH');
   },
@@ -130,13 +136,15 @@ const actions = {
         password_confirmation: null,
       },
       loading: false,
+      errors: {},
+      status: null,
     });
   },
   'security/update': async ({ commit, getters, dispatch }) => {
     commit('SECURITY/SET', { loading: true });
     const security = getters['security/value'];
-    const { status } = await resource.current().updatePassword(security);
-    commit('SECURITY/SET', { loading: false });
+    const { status, data } = await resource.current().updatePassword(security);
+    commit('SECURITY/SET', { status, errors: (data.errors || {}), loading: false });
     if (status === 200) {
       dispatch('snackbar/set', { show: true, text: 'Password has been successfully updated.' }, { root: true });
     }
