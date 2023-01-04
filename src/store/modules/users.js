@@ -1,3 +1,4 @@
+import router from '@/router';
 import initialState from '@/config/users.state.js';
 import UserResource from '@/api/user/UserResource';
 
@@ -15,11 +16,20 @@ const getters = {
   'list/options/footer': ({ list: { footerOptions } }) => footerOptions,
   'list/value/items': ({ list: { value } }) => value?.data,
   'list/value/items/total': ({ list: { value } }) => value?.total,
+  'form/loading': ({ form: { loading } }) => loading,
+  'form/errors': ({ form: { errors } }) => errors,
+  'form/status': ({ form: { status } }) => status,
+  'form/value': ({ form: { value } }) => value,
+  'form/value/name': ({ form: { value: { name } } }) => name,
+  'form/value/email': ({ form: { value: { email } } }) => email,
+  'form/value/password': ({ form: { value: { password } } }) => password,
 };
 
 const mutations = {
   'LIST/SET': (state, list) => { state.list = { ...state.list, ...list }; },
   'LIST/OPTIONS/SET': (state, options) => { state.list.options = { ...state.list.options, ...options }; },
+  'FORM/SET': (state, form) => { state.form = { ...state.form, ...form }; },
+  'FORM/VALUE/SET': (state, value) => { state.form.value = { ...state.form.value, ...value }; },
 };
 
 const actions = {
@@ -48,6 +58,31 @@ const actions = {
       page, sort, direction, per_page: itemsPerPage,
     });
     commit('LIST/SET', { loading: false });
+  },
+  'form/value/name': ({ commit }, name) => commit('FORM/VALUE/SET', { name }),
+  'form/value/email': ({ commit }, email) => commit('FORM/VALUE/SET', { email }),
+  'form/value/password': ({ commit }, password) => commit('FORM/VALUE/SET', { password }),
+  'form/reset': ({ commit }) => {
+    commit('FORM/SET', {
+      value: {
+        name: null,
+        email: null,
+        password: null,
+      },
+      loading: false,
+      errors: {},
+      status: null,
+    });
+  },
+  create: async ({ commit, getters, dispatch }) => {
+    commit('FORM/SET', { loading: true });
+    const form = getters['form/value'];
+    const { status, data } = await resource.create(form);
+    commit('FORM/SET', { status, errors: (data.errors || {}), loading: false });
+    if (status === 201) {
+      router.push({ path: '/users' });
+      dispatch('snackbar/set', { show: true, text: 'User has been successfully added.' }, { root: true });
+    }
   },
 };
 

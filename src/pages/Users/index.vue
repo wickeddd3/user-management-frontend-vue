@@ -16,6 +16,7 @@
             <v-btn
               icon
               v-bind="attrs"
+              to="/users/create"
               v-on="on"
             >
               <v-icon>mdi-account-plus-outline</v-icon>

@@ -26,12 +26,31 @@ export default [
       },
       {
         path: 'users',
-        name: 'Users',
         meta: {
           authOnly: true,
           breadcrumb: 'Users',
         },
-        component: () => import(/* webpackChunkName: "users" */ '../pages/Users/index.vue'),
+        component: {
+          render (c) { return c('router-view'); },
+        },
+        children: [
+          {
+            path: '',
+            meta: {
+              authOnly: true,
+            },
+            component: () => import(/* webpackChunkName: "users" */ '../pages/Users/index.vue'),
+          },
+          {
+            path: 'create',
+            name: 'Create',
+            meta: {
+              authOnly: true,
+              breadcrumb: 'Create',
+            },
+            component: () => import(/* webpackChunkName: "createUser" */ '../pages/Users/Create.vue'),
+          },
+        ],
       },
       {
         path: 'profile',

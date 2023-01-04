@@ -26,4 +26,14 @@ export default {
       'items-per-page-options': [ 10, 20, 30, 40, 50 ],
     },
   },
+  form: {
+    value: {
+      name: null,
+      email: null,
+      password: null,
+    },
+    loading: false,
+    errors: {},
+    status: null,
+  },
 };

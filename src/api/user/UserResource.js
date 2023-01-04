@@ -10,7 +10,9 @@ export default class UserResource extends ResourceClient {
   }
 
   create (data) {
-    return super.post(data);
+    return super.post(data)
+      .then(response => response)
+      .catch(error => error.response);
   }
 
   find (id) {
@@ -18,6 +20,8 @@ export default class UserResource extends ResourceClient {
   }
 
   update (id, data) {
-    return super.put(data, { url: `${this._url}/${id}` });
+    return super.put(data, { url: `${this._url}/${id}` })
+      .then(response => response)
+      .catch(error => error.response);
   }
 }
