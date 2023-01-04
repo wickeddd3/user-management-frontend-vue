@@ -1,37 +1,12 @@
 import Cookies from 'js-cookie';
 import router from '@/router';
+import initialState from '@/config/authentication.state.js';
 import AuthenticationResource from '@/api/auth/AuthenticationResource';
 
 const resource = new AuthenticationResource();
 
 const state = {
-  form: {
-    value: {
-      email: null,
-      password: null,
-    },
-    loading: false,
-    errors: {},
-    status: null,
-  },
-  current: {
-    value: {
-      name: null,
-      email: null,
-    },
-    loading: false,
-    ready: false,
-  },
-  security: {
-    value: {
-      password: null,
-      current_password: null,
-      password_confirmation: null,
-    },
-    loading: false,
-    errors: {},
-    status: null,
-  },
+  ...initialState,
 };
 
 const getters = {
