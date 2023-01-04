@@ -9,6 +9,7 @@
         color="red"
         text
         v-bind="attrs"
+        @click="setShow(false)"
       >
         Close
       </v-btn>
@@ -29,6 +30,11 @@ export default {
       ...mapGetters({ get: 'snackbar/show' }),
       ...mapActions({ set: 'snackbar/show' }),
     },
+  },
+  methods: {
+    ...mapActions({
+      setShow: 'snackbar/show',
+    }),
   },
 };
 </script>
