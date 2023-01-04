@@ -30,7 +30,7 @@
       :headers="headers"
       :items="items"
       :options.sync="options"
-      :server-items-length="serverItemsLength"
+      :server-items-length="total"
       :footer-props="footerOptions"
       :loading="loading"
       class="elevation-1"
@@ -54,11 +54,11 @@ export default {
   computed: {
     ...mapGetters({
       ready: 'users/list/ready',
+      loading: 'users/list/loading',
       headers: 'users/list/headers',
-      loading: 'users/list/value/loading',
       items: 'users/list/value/items',
-      serverItemsLength: 'users/list/value/items/server/items/length',
-      footerOptions: 'users/list/footer/options',
+      total: 'users/list/value/items/total',
+      footerOptions: 'users/list/options/footer',
     }),
     options: {
       get () {
