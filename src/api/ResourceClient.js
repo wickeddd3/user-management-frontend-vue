@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import router from '@/router';
 import { apiDomain } from '../../.env';
 
 export default class ResourceClient {
@@ -16,7 +15,7 @@ export default class ResourceClient {
         this.$http.post(`${apiDomain}/logout`);
         Cookies.remove('AUTH');
         Cookies.remove('XSRF-TOKEN');
-        router.push({ path: '/' });
+        window.location = '/login';
       }
       return error?.response;
     });
