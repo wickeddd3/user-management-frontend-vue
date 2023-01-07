@@ -15,7 +15,7 @@
           >
             <v-card>
               <v-card-title class="body-1 font-weight-bold">Profile Information</v-card-title>
-              <v-card-text class="pt-6">
+              <v-card-text class="pt-4">
                 <validation-provider
                   v-slot="{ errors }"
                   vid="name"

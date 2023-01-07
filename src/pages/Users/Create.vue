@@ -13,70 +13,78 @@
             ref="form"
             @submit.prevent="handleSubmit(createUser)"
           >
-            <error-message
-              :status="status"
-              :errors="errors"
-            ></error-message>
-            <validation-provider
-              v-slot="{ errors }"
-              vid="name"
-              name="Name"
-              rules="required|max:254"
-            >
-              <v-text-field
-                v-model="name"
-                :error-messages="errors"
-                label="Name"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
+            <v-card>
+              <v-card-title class="body-1 font-weight-bold">Add New User</v-card-title>
+              <v-card-text class="pt-4">
+                <error-message
+                  :status="status"
+                  :errors="errors"
+                ></error-message>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="name"
+                  name="Name"
+                  rules="required|max:254"
+                >
+                  <v-text-field
+                    v-model="name"
+                    :error-messages="errors"
+                    label="Name"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
 
-            <validation-provider
-              v-slot="{ errors }"
-              vid="email"
-              name="Email"
-              rules="required|email"
-            >
-              <v-text-field
-                v-model="email"
-                :error-messages="errors"
-                label="Email"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="email"
+                  name="Email"
+                  rules="required|email"
+                >
+                  <v-text-field
+                    v-model="email"
+                    :error-messages="errors"
+                    label="Email"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
 
-            <validation-provider
-              v-slot="{ errors }"
-              vid="password"
-              name="Password"
-              rules="required|min:8"
-            >
-              <v-text-field
-                v-model="password"
-                :error-messages="errors"
-                label="Password"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
-
-            <div class="d-flex justify-space-between align-center mt-4">
-              <router-link
-                to="/users"
-                class="text-decoration-none font-weight-bold"
-              >Back to users</router-link>
-
-              <v-btn
-                :disabled="invalid"
-                :loading="loading"
-                color="primary"
-                type="submit"
-              >
-                Create user
-              </v-btn>
-            </div>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="password"
+                  name="Password"
+                  rules="required|min:8"
+                >
+                  <v-text-field
+                    v-model="password"
+                    :error-messages="errors"
+                    label="Password"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
+              </v-card-text>
+              <v-divider></v-divider>
+              <v-card-actions class="pa-4">
+                <v-btn
+                  to="/users"
+                  color="primary"
+                  text
+                  exact
+                >Back to users</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn
+                  :disabled="invalid"
+                  :loading="loading"
+                  color="primary"
+                  type="submit"
+                  class="px-4"
+                >
+                  Create user
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-form>
         </validation-observer>
       </v-col>

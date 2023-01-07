@@ -59,6 +59,7 @@ const actions = {
     });
     commit('LIST/SET', { loading: false });
   },
+  'list/reset': ({ commit }) => commit('LIST/SET', { value: null, ready: false }),
   'form/value/name': ({ commit }, name) => commit('FORM/VALUE/SET', { name }),
   'form/value/email': ({ commit }, email) => commit('FORM/VALUE/SET', { email }),
   'form/value/password': ({ commit }, password) => commit('FORM/VALUE/SET', { password }),

@@ -82,10 +82,14 @@ export default {
   created () {
     this.getList();
   },
+  destroyed () {
+    this.resetList();
+  },
   methods: {
     ...mapActions({
       getList: 'users/list/get',
       deleteUser: 'users/delete',
+      resetList: 'users/list/reset',
     }),
   },
 };

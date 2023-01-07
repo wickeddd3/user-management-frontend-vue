@@ -15,7 +15,7 @@
           >
             <v-card>
               <v-card-title class="body-1 font-weight-bold">Profile Password</v-card-title>
-              <v-card-text class="pt-6">
+              <v-card-text class="pt-4">
                 <error-message
                   :status="status"
                   :errors="errors"
