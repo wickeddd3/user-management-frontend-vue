@@ -62,7 +62,7 @@ const actions = {
       router.push({ path: '/' });
       return;
     }
-    commit('FORM/SET', { status, errors: (data.errors || {}), loading: false });
+    commit('FORM/SET', { status, errors: (data?.errors || {}), loading: false });
     Cookies.remove('XSRF-TOKEN');
     Cookies.remove('AUTH');
   },
@@ -119,7 +119,7 @@ const actions = {
     commit('SECURITY/SET', { loading: true });
     const security = getters['security/value'];
     const { status, data } = await resource.current().updatePassword(security);
-    commit('SECURITY/SET', { status, errors: (data.errors || {}), loading: false });
+    commit('SECURITY/SET', { status, errors: (data?.errors || {}), loading: false });
     if (status === 200) {
       dispatch('snackbar/set', { show: true, text: 'Password has been successfully updated.' }, { root: true });
     }

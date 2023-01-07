@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import router from '@/router';
 import { apiDomain } from '../../.env';
 
 export default class ResourceClient {
@@ -7,6 +9,16 @@ export default class ResourceClient {
       ...config,
       baseURL: apiDomain,
       withCredentials: true,
+    });
+    this.$http.interceptors.response.use(response => response, error => {
+      const status = error?.response?.status || null;
+      if (status === 401) {
+        this.$http.post(`${apiDomain}/logout`);
+        Cookies.remove('AUTH');
+        Cookies.remove('XSRF-TOKEN');
+        router.push({ path: '/' });
+      }
+      return error?.response;
     });
     this._url = url;
     this._defaultConfig = config;

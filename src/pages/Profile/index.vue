@@ -13,51 +13,59 @@
             ref="form"
             @submit.prevent="handleSubmit(updateCurrent)"
           >
-            <validation-provider
-              v-slot="{ errors }"
-              vid="name"
-              name="Name"
-              rules="required|max:100"
-            >
-              <v-text-field
-                v-model="name"
-                :error-messages="errors"
-                label="Name"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
+            <v-card>
+              <v-card-title class="body-1 font-weight-bold">Profile Information</v-card-title>
+              <v-card-text class="pt-6">
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="name"
+                  name="Name"
+                  rules="required|max:100"
+                >
+                  <v-text-field
+                    v-model="name"
+                    :error-messages="errors"
+                    label="Name"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
 
-            <validation-provider
-              v-slot="{ errors }"
-              vid="email"
-              name="Email"
-              rules="required|email"
-            >
-              <v-text-field
-                v-model="email"
-                :error-messages="errors"
-                label="Email"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
-
-            <div class="d-flex justify-space-between align-center mt-4">
-              <router-link
-                to="/profile/password"
-                class="text-decoration-none font-weight-bold"
-              >Profile Password</router-link>
-
-              <v-btn
-                :disabled="invalid"
-                :loading="loading"
-                color="primary"
-                type="submit"
-              >
-                Save Changes
-              </v-btn>
-            </div>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="email"
+                  name="Email"
+                  rules="required|email"
+                >
+                  <v-text-field
+                    v-model="email"
+                    :error-messages="errors"
+                    label="Email"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
+              </v-card-text>
+              <v-divider></v-divider>
+              <v-card-actions class="pa-4">
+                <v-btn
+                  to="/profile/password"
+                  color="primary"
+                  text
+                  exact
+                >Profile Password</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn
+                  :disabled="invalid"
+                  :loading="loading"
+                  color="primary"
+                  type="submit"
+                  class="px-4"
+                >
+                  Save Changes
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-form>
         </validation-observer>
       </v-col>

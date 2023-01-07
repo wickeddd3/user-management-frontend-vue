@@ -44,8 +44,11 @@
             <v-text-field
               v-model="password"
               :error-messages="errors"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show ? 'text' : 'password'"
               label="Password"
               outlined
+              @click:append="show = !show"
             ></v-text-field>
           </validation-provider>
 
@@ -73,6 +76,11 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 export default {
   name: 'Login',
   components: { ErrorMessage },
+  data () {
+    return {
+      show: false,
+    };
+  },
   computed: {
     ...mapGetters({
       loading: 'authentication/form/loading',

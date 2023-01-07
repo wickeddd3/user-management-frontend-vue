@@ -13,70 +13,78 @@
             ref="form"
             @submit.prevent="handleSubmit(updatePassword)"
           >
-            <error-message
-              :status="status"
-              :errors="errors"
-            ></error-message>
-            <validation-provider
-              v-slot="{ errors }"
-              vid="currentPassword"
-              name="Current Password"
-              rules="required"
-            >
-              <v-text-field
-                v-model="currentPassword"
-                :error-messages="errors"
-                label="Current Password"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
+            <v-card>
+              <v-card-title class="body-1 font-weight-bold">Profile Password</v-card-title>
+              <v-card-text class="pt-6">
+                <error-message
+                  :status="status"
+                  :errors="errors"
+                ></error-message>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="currentPassword"
+                  name="Current Password"
+                  rules="required"
+                >
+                  <v-text-field
+                    v-model="currentPassword"
+                    :error-messages="errors"
+                    label="Current Password"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
 
-            <validation-provider
-              v-slot="{ errors }"
-              vid="newPassword"
-              name="New Password"
-              rules="required"
-            >
-              <v-text-field
-                v-model="newPassword"
-                :error-messages="errors"
-                label="New Password"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="newPassword"
+                  name="New Password"
+                  rules="required"
+                >
+                  <v-text-field
+                    v-model="newPassword"
+                    :error-messages="errors"
+                    label="New Password"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
 
-            <validation-provider
-              v-slot="{ errors }"
-              vid="passwordConfirmation"
-              name="New Password"
-              rules="required|confirmed:newPassword"
-            >
-              <v-text-field
-                v-model="passwordConfirmation"
-                :error-messages="errors"
-                label="Confirm New Password"
-                outlined
-                dense
-              ></v-text-field>
-            </validation-provider>
-
-            <div class="d-flex justify-space-between align-center mt-4">
-              <router-link
-                to="/profile"
-                class="text-decoration-none font-weight-bold"
-              >Back to profile</router-link>
-
-              <v-btn
-                :disabled="invalid"
-                :loading="loading"
-                color="primary"
-                type="submit"
-              >
-                Update Password
-              </v-btn>
-            </div>
+                <validation-provider
+                  v-slot="{ errors }"
+                  vid="passwordConfirmation"
+                  name="New Password"
+                  rules="required|confirmed:newPassword"
+                >
+                  <v-text-field
+                    v-model="passwordConfirmation"
+                    :error-messages="errors"
+                    label="Confirm New Password"
+                    outlined
+                    dense
+                  ></v-text-field>
+                </validation-provider>
+              </v-card-text>
+              <v-divider></v-divider>
+              <v-card-actions class="pa-4">
+                <v-btn
+                  to="/profile"
+                  color="primary"
+                  text
+                  exact
+                >Back to profile</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn
+                  :disabled="invalid"
+                  :loading="loading"
+                  color="primary"
+                  type="submit"
+                  class="px-4"
+                >
+                  Update Password
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-form>
         </validation-observer>
       </v-col>
