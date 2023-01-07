@@ -30,6 +30,7 @@
                     v-model="currentPassword"
                     :error-messages="errors"
                     label="Current Password"
+                    type="password"
                     outlined
                     dense
                   ></v-text-field>
@@ -45,6 +46,7 @@
                     v-model="newPassword"
                     :error-messages="errors"
                     label="New Password"
+                    type="password"
                     outlined
                     dense
                   ></v-text-field>
@@ -60,6 +62,7 @@
                     v-model="passwordConfirmation"
                     :error-messages="errors"
                     label="Confirm New Password"
+                    type="password"
                     outlined
                     dense
                   ></v-text-field>
