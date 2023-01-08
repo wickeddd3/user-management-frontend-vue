@@ -30,4 +30,32 @@ export default class UserResource extends ResourceClient {
       .then(response => response)
       .catch(error => error.response);
   }
+
+  template () {
+    return super.get({
+      url: `${this._url}/export/template`,
+      responseType: 'arraybuffer',
+    })
+      .then(response => response)
+      .catch(error => error.response);
+  }
+
+  download () {
+    return super.post({}, {
+      url: `${this._url}/export`,
+      responseType: 'arraybuffer',
+    })
+      .then(response => response)
+      .catch(error => error.response);
+  }
+
+  upload (file) {
+    const headers = { 'Content-Type': 'multipart/form-data' };
+    const config = { headers };
+    const formData = new FormData();
+    formData.append('file', file);
+    return super.post(formData, { url: `${this._url}/import`, config })
+      .then(response => response)
+      .catch(error => error.response);
+  }
 }

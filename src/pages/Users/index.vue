@@ -16,6 +16,52 @@
             <v-btn
               icon
               v-bind="attrs"
+              v-on="on"
+              @click="downloadTemplate"
+            >
+              <v-icon>mdi-file-download-outline</v-icon>
+            </v-btn>
+          </template>
+          Download Template
+        </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="downloadUsers"
+            >
+              <v-icon>mdi-tray-arrow-down</v-icon>
+            </v-btn>
+          </template>
+          Download Users
+        </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="$refs.fileUpload.click()"
+            >
+              <v-icon>mdi-tray-arrow-up</v-icon>
+            </v-btn>
+            <input
+              ref="fileUpload"
+              type="file"
+              class="d-none"
+              accept="*.text/*.txt/*.csv/*.xls/*.xlsx"
+              @change.prevent="upload"
+            >
+          </template>
+          Import Template
+        </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
               to="/users/create"
               v-on="on"
             >
@@ -90,7 +136,15 @@ export default {
       getList: 'users/list/get',
       deleteUser: 'users/delete',
       resetList: 'users/list/reset',
+      downloadTemplate: 'users/template',
+      downloadUsers: 'users/download',
+      uploadTemplate: 'users/upload',
     }),
+    upload (event) {
+      const { target: { files } } = event;
+      this.uploadTemplate(files[0]);
+      this.$refs.fileUpload.value = null;
+    },
   },
 };
 </script>

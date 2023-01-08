@@ -93,6 +93,34 @@ const actions = {
       dispatch('snackbar/set', { show: true, text: 'User has been successfully deleted.' }, { root: true });
     }
   },
+  template: async () => {
+    const { data } = await resource.template();
+    const blob = new Blob([ data ]);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'users-template.xlsx';
+    link.click();
+    URL.revokeObjectURL(url);
+  },
+  download: async () => {
+    const { data } = await resource.download();
+    const blob = new Blob([ data ]);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'users.xlsx';
+    link.click();
+    URL.revokeObjectURL(url);
+  },
+  upload: async ({ getters, dispatch }, file) => {
+    const { status } = await resource.upload(file);
+    if (status === 200) {
+      const options = getters['list/options'];
+      dispatch('list/get', options);
+      dispatch('snackbar/set', { show: true, text: 'Users has been successfully uploaded.' }, { root: true });
+    }
+  },
 };
 
 export default {
