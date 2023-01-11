@@ -3,12 +3,14 @@
     <v-row justify="space-between" class="mb-2">
       <v-col cols="auto">
         <v-text-field
+          v-model="searchQuery"
           label="Search..."
           prepend-inner-icon="mdi-magnify"
           hide-details
           clearable
           solo
           dense
+          @input="search"
         ></v-text-field>
       </v-col>
       <v-col cols="auto">
@@ -111,10 +113,16 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'lodash';
 import AppContent from '@/components/App/AppContent';
 
 export default {
   name: 'Users',
+  data () {
+    return {
+      searchQuery: null,
+    };
+  },
   components: {
     AppContent,
   },
@@ -156,6 +164,9 @@ export default {
       this.uploadTemplate(files[0]);
       this.$refs.fileUpload.value = null;
     },
+    search: debounce(function () {
+      this.getList({ query: this.searchQuery });
+    }, 500),
   },
 };
 </script>

@@ -5,7 +5,7 @@ export default class UserResource extends ResourceClient {
     super({ url: '/api/users' });
   }
 
-  list (params = { per_page: 10 }) {
+  list (params = { per_page: 10, query: '' }) {
     return super.get({ params });
   }
 
