@@ -1,5 +1,13 @@
 export default [
   {
+    path: '*',
+    name: 'NotFound',
+    meta: {
+      authOnly: true,
+    },
+    component: () => import(/* webpackChunkName: "notFound" */ '../pages/NotFound.vue'),
+  },
+  {
     path: '/login',
     name: 'Login',
     meta: {
@@ -49,6 +57,15 @@ export default [
               breadcrumb: 'Create',
             },
             component: () => import(/* webpackChunkName: "createUser" */ '../pages/Users/Create.vue'),
+          },
+          {
+            path: ':id/edit',
+            name: 'Edit',
+            meta: {
+              authOnly: true,
+              breadcrumb: 'Edit',
+            },
+            component: () => import(/* webpackChunkName: "editUser" */ '../pages/Users/Edit.vue'),
           },
         ],
       },

@@ -85,6 +85,21 @@ const actions = {
       dispatch('snackbar/set', { show: true, text: 'User has been successfully added.' }, { root: true });
     }
   },
+  edit: async ({ commit }, id) => {
+    const { data } = await resource.find(id);
+    commit('FORM/SET', { value: data });
+  },
+  update: async ({ commit, getters, dispatch }) => {
+    commit('FORM/SET', { loading: true });
+    const { id, name, email } = getters['form/value'];
+    const form = { name, email };
+    const { status, data } = await resource.update(id, form);
+    commit('FORM/SET', { status, errors: (data.errors || {}), loading: false });
+    if (status === 200) {
+      router.push({ path: '/users' });
+      dispatch('snackbar/set', { show: true, text: 'User has been successfully updated.' }, { root: true });
+    }
+  },
   delete: async ({ getters, dispatch }, id) => {
     const { status } = await resource.delete(id);
     if (status === 200) {

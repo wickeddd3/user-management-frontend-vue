@@ -17,7 +17,15 @@ export default {
       },
       {
         text: '',
-        align: 'start',
+        align: 'center',
+        width: 100,
+        sortable: false,
+        value: 'edit',
+      },
+      {
+        text: '',
+        align: 'center',
+        width: 100,
         sortable: false,
         value: 'delete',
       },

@@ -1,10 +1,11 @@
 <template>
   <app-content>
-    <v-row justify="space-between">
+    <v-row justify="space-between" class="mb-2">
       <v-col cols="auto">
         <v-text-field
           label="Search..."
           prepend-inner-icon="mdi-magnify"
+          hide-details
           clearable
           solo
           dense
@@ -82,6 +83,16 @@
       :loading="loading"
       class="elevation-1"
     >
+      <template v-slot:item.edit="{ item }">
+        <v-btn
+          :to="`/users/${item.id}/edit`"
+          icon
+          link
+          exact
+        >
+          <v-icon>mdi-pencil-outline</v-icon>
+        </v-btn>
+      </template>
       <template v-slot:item.delete="{ item }">
         <v-btn
           icon

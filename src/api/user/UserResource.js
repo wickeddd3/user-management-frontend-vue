@@ -16,7 +16,9 @@ export default class UserResource extends ResourceClient {
   }
 
   find (id) {
-    return super.get({ url: `${this._url}/${id}` });
+    return super.get({ url: `${this._url}/${id}` })
+      .then(response => response)
+      .catch(error => error.response);
   }
 
   update (id, data) {
